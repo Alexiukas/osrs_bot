@@ -1,0 +1,66 @@
+10:38:57 Loading ML model..
+10:39:0 Model loaded successfully..
+10:39:6 Setting up client..
+10:39:10 Attacking cow..
+10:39:12 In combat with a cow..
+10:39:31 Out of combat..
+10:39:32 Attacking cow..
+10:39:38 Player doesn't seem to be in combat.. Retrying..
+10:39:39 Attacking cow..
+10:39:41 In combat with a cow..
+10:40:9 Out of combat..
+10:40:10 Attacking cow..
+10:40:12 In combat with a cow..
+10:40:33 Preferred food hasn't been found..
+Stopping the script..
+10:40:33 10:38:57 Loading ML model..
+10:39:0 Model loaded successfully..
+10:39:6 Setting up client..
+10:39:10 Attacking cow..
+10:39:12 In combat with a cow..
+10:39:31 Out of combat..
+10:39:32 Attacking cow..
+10:39:38 Player doesn't seem to be in combat.. Retrying..
+10:39:39 Attacking cow..
+10:39:41 In combat with a cow..
+10:40:9 Out of combat..
+10:40:10 Attacking cow..
+10:40:12 In combat with a cow..
+10:40:33 Preferred food hasn't been found..
+Stopping the script..
+Total loot count is 2
+Run time 0:01:35
+10:41:23 10:38:57 Loading ML model..
+10:39:0 Model loaded successfully..
+10:39:6 Setting up client..
+10:39:10 Attacking cow..
+10:39:12 In combat with a cow..
+10:39:31 Out of combat..
+10:39:32 Attacking cow..
+10:39:38 Player doesn't seem to be in combat.. Retrying..
+10:39:39 Attacking cow..
+10:39:41 In combat with a cow..
+10:40:9 Out of combat..
+10:40:10 Attacking cow..
+10:40:12 In combat with a cow..
+10:40:33 Preferred food hasn't been found..
+Stopping the script..
+10:40:33 10:38:57 Loading ML model..
+10:39:0 Model loaded successfully..
+10:39:6 Setting up client..
+10:39:10 Attacking cow..
+10:39:12 In combat with a cow..
+10:39:31 Out of combat..
+10:39:32 Attacking cow..
+10:39:38 Player doesn't seem to be in combat.. Retrying..
+10:39:39 Attacking cow..
+10:39:41 In combat with a cow..
+10:40:9 Out of combat..
+10:40:10 Attacking cow..
+10:40:12 In combat with a cow..
+10:40:33 Preferred food hasn't been found..
+Stopping the script..
+Total loot count is 2
+Run time 0:01:35
+Total loot count is 2
+Run time 0:01:35

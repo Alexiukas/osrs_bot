@@ -1,0 +1,6 @@
+21:44:32 Setting up client..
+21:44:38 Trying to detect objects
+21:44:38 Trying to Fish shrimp
+21:44:43 Got +1 shrimp
+21:44:44 User stopped the script.
+Total loot count is 1
