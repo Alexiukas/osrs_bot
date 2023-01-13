@@ -1,0 +1,15 @@
+customtkinter==5.0.3
+mss==7.0.1
+numpy==1.22.3
+opencv_python==4.5.5.64
+pyautogui==0.9.53
+roboflow==0.2.25
+torch==1.11.0
+win32gui==221.6
+seaborn==0.12.1
+roboflow==0.2.18
+torchvision==0.14.1
+pandas==1.5.2
+matplotlib==3.6.2
+Pillow==9.2.0
+PyYAML==5.3.1
