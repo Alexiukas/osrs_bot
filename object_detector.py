@@ -66,7 +66,6 @@ def detect_orb_values(key="hp"):
 
     for cnt in sorted_cnts:
         cropped = mask[cnt[1]:cnt[1] + cnt[3], cnt[0]:+ cnt[0] + cnt[2]]
-        continue
         value = match_orb_digits(cropped)
         if value is None:
             print("Failed to match digits")
@@ -78,11 +77,12 @@ def detect_orb_values(key="hp"):
 
 def match_templates(name, threshold=0.95):
     # for template in templates:
+    if name not in templates:
+        return []
     template = templates[name]
     img = np.array(take_picture(False, False, bag_screen))
     img = cv.cvtColor(cv.cvtColor(img, cv.COLOR_RGB2BGR), cv.COLOR_BGR2GRAY)
     result = cv.matchTemplate(img, template[0], cv.TM_CCOEFF_NORMED)
-    cv.imshow('as.png', result)
     loc = np.where(result >= threshold)
     locations = {}
     for pnt in zip(*loc[::-1]):

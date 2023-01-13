@@ -1,4 +1,4 @@
 Woodcutting,Chop tree, Chop oak,Chop willow,Chop yew,
 Mining,Mine copper,Mine Tin,Mine iron, Min coal, Mine mithril,Mine adamante,
-Fishing,Fish shrimp,Fish trout/salmon,
+Fishing,Fish shrimp,
 Combat,Kill cows,

@@ -11,16 +11,17 @@ import object_detector
 
 
 class CombatBot:
-    def __init__(self, logs, script, stop, pause, kc, mouse_settings):
+    def __init__(self, logs, script, stop, was_stopped, pause, kc, mouse_settings):
         self.log_msg = logs
         self.script_info = script
         self.running = True
         self.pause = pause
         self.kill_count = kc
+        self.was_stopped = was_stopped
         self.stop = stop
         self.is_in_combat = False
         self.index = 0
-        self.mouse = mouse_settings()
+        self.mouse = mouse_settings
 
     def run(self):
         self.log_msg("Loading ML model..")
@@ -38,7 +39,7 @@ class CombatBot:
         time.sleep(random.uniform(0.92, 1.84))
         pyautogui.keyDown('up')
 
-        while self.running:
+        while self.check_stop_state():
             if self.pause():
                 time.sleep(1)
                 continue
@@ -65,19 +66,19 @@ class CombatBot:
 
             self.log_msg("In combat with a cow..")
 
-            while self.is_in_combat and self.running:
+            while self.is_in_combat and self.check_stop_state():
                 time.sleep(1)
                 self.is_in_combat = object_detector.is_pixel_count_enough(np.array(utilities.take_picture(save=False, screen=dictionary.health_bar)), [60, 100, 100], [60, 255, 255], 25)
                 health_count = int(object_detector.detect_orb_values('hp'))
 
-                if health_count <= 5:
+                if health_count <= 10:
                     if self.eat_food():
                         if int(object_detector.detect_orb_values()) > health_count:
                             self.log_msg(f"Eat {self.script_info['item']}")
                     else:
                         break
 
-            if self.running:
+            if self.check_stop_state():
                 self.kill_count.set(self.kill_count.get() + 1)
                 self.log_msg("Out of combat..")
             self.index = 0
@@ -138,3 +139,6 @@ class CombatBot:
         utilities.move_mouse(self.mouse, target_x + dictionary.bag_screen[0], target_y + dictionary.bag_screen[1], click=True)
 
         return True
+
+    def check_stop_state(self):
+        return self.running and self.was_stopped()

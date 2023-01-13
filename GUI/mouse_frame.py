@@ -98,12 +98,10 @@ class MouseFrame(customtkinter.CTkFrame):
         canvas = win32gui.FindWindow(None, "Mouse test")
         coordinates = list(win32gui.GetWindowRect(canvas))
 
-        mm = mouse_mover.WindMouse(self.G, self.W, self.M)
-
         for i in range(10):
             pyautogui.moveTo(coordinates[0] + 50, coordinates[1] + canvas_y)
             x, y = pyautogui.position()
-            mm.wind_mouse(x, y, x + 500, y, drag=True)
+            mouse_mover.wind_mouse(x, y, x + 500, y, drag=True, G_0=self.G, W_0=self.W, M_0=self.M)
             index += 1
             canvas_y += 40
 

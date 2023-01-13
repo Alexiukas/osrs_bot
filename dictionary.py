@@ -1,6 +1,3 @@
-import mouse_mover
-
-
 olg_bag_layout = [(562, 238, 602, 278), (607, 238, 651, 278), (651, 238, 692, 278), (692, 238, 728, 278),
                   (562, 278, 602, 315), (607, 278, 651, 315), (651, 278, 692, 315), (692, 278, 728, 315),
                   (562, 315, 602, 352), (607, 315, 651, 352), (651, 315, 692, 352), (692, 315, 728, 352),
@@ -24,17 +21,6 @@ scripts = []
 action_list = {}
 full_inv_lower = (106, 50, 20)
 full_inv_upper = (138, 255, 255)
-
-
-# DEPRECATED
-def get_gathering_bag():
-    weights_x = []
-    weights_y = []
-    for i in olg_bag_layout:
-        weights_x.append(mouse_mover.weight_generator([i[0], i[2]]))
-        weights_y.append(mouse_mover.weight_generator([i[1], i[3]]))
-    test = list(zip(olg_bag_layout, weights_x, weights_y))
-    return test
 
 
 

@@ -20,7 +20,7 @@ class HomeFrame(ct.CTkFrame):
         self.header.grid(row=0, column=1, padx=10, pady=10)
         self.is_running = False
         self.is_paused = False
-        self.mouse_settings = mouse_mover.WindMouse(mouse_settings[0], mouse_settings[1], mouse_settings[2]) if mouse_settings is not None else mouse_mover.WindMouse
+        self.mouse_settings = mouse_settings# mouse_mover.WindMouse(mouse_settings[0], mouse_settings[1], mouse_settings[2]) if mouse_settings is not None else mouse_mover.WindMouse
         self.start_time = 0
 
         self.start_button = ct.CTkButton(self, text="START", corner_radius=15, height=20, width=80, border_spacing=10, command=self.start, state="disabled" if script_selected is None else "normal")
@@ -59,10 +59,10 @@ class HomeFrame(ct.CTkFrame):
 
         self.main_button_switch(True)
         if self.script['bot_type'] == 'local':
-            bot = combat_bot.CombatBot(self.update_textbox, self.script, self.stop, lambda: self.is_paused, self.loot_var, mouse_settings=self.mouse_settings)
+            bot = combat_bot.CombatBot(self.update_textbox, self.script, self.stop, lambda: self.is_running, lambda: self.is_paused, self.loot_var, mouse_settings=self.mouse_settings)
             self.run = threading.Thread(target=bot.run)
         else:
-            bot = gathering_bot.GatheringBot(logs=self.update_textbox, script=self.script, running=lambda: self.is_running, stop=self.stop, paused=lambda: self.is_paused, mouse=self.mouse_settings, loot=self.loot_var)
+            bot = gathering_bot.GatheringBot(logs=self.update_textbox, script=self.script, running=lambda: self.is_running, stop=self.stop, paused=lambda: self.is_paused, loot=self.loot_var, mouse_settings=self.mouse_settings)
             self.run = threading.Thread(target=bot.run)
 
         self.run.start()

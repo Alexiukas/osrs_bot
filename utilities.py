@@ -6,6 +6,7 @@ import mss
 import pyautogui
 import win32gui
 from dictionary import game_screen
+import mouse_mover
 
 font = cv.FONT_HERSHEY_SIMPLEX
 DIRECTORY = os.path.dirname(os.path.realpath(__file__))
@@ -41,7 +42,7 @@ def take_picture(save=True, full_client=False, screen=None, name="test.png"):
         return ss
 
 
-def setup_rs_client(mouse_mover, zoomed_in=False, resizable=False):
+def setup_rs_client(mouse, zoomed_in=False, resizable=False):
     game_coordinates = get_osrs_coordinates()
     if game_coordinates == 0:
         return
@@ -99,7 +100,7 @@ def draw_bb(pic, predictions, client):
 def move_mouse(mouse, target_x, target_y, click=True, drag=False):
     client_pos = get_osrs_coordinates()
     mouse_x, mouse_y = pyautogui.position()
-    mouse.wind_mouse(mouse_x, mouse_y, client_pos[0] + target_x, client_pos[1] + target_y, click=click, drag=drag)
+    mouse_mover.wind_mouse(mouse_x, mouse_y, client_pos[0] + target_x, client_pos[1] + target_y, click=click, drag=drag)
 
 
 if __name__ == "__main__":

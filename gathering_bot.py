@@ -20,14 +20,16 @@ FILE_PATH = os.path.dirname(os.path.realpath(__file__))
 
 
 class GatheringBot:
-    def __init__(self, logs, script, running, stop, paused, loot, mouse):
+    def __init__(self, logs, script, running, stop, paused, loot, mouse_settings):
         self.log_msg = logs
         self.stop = stop
         self.paused = paused
         self.loot_count = loot
-        self.mouse = mouse()
+        self.mouse = mouse_settings
         self.script = script
         self.running = running
+        self.drop = True
+        self.tries_to_detect = 0
         self.full_action = self.script['action']
         self.action = self.full_action[self.full_action.index(' '):].lower().strip()
 
@@ -38,7 +40,7 @@ class GatheringBot:
         file_worker.load_templates(file_worker.PATH_TO_ITEMS)
 
         self.log_msg("Setting up client..")
-        utilities.setup_rs_client(mouse_mover=self.mouse, zoomed_in=True if bot_type == 'color' else False)
+        utilities.setup_rs_client(self.mouse, zoomed_in=True if bot_type == 'color' else False)
 
         while self.running():
             if self.paused():
@@ -49,6 +51,10 @@ class GatheringBot:
                 self.log_msg("Script run time finished. Stopping..")
                 self.stop()
                 break
+
+            if self.tries_to_detect >= 2:
+                self.log_msg("Failed to perform actions. Stopping the script")
+                self.stop()
 
             screenshot = utilities.take_picture(True, False, dictionary.game_screen, "bot_running.png")
             self.log_msg("Trying to detect objects")
@@ -63,7 +69,7 @@ class GatheringBot:
 
             time.sleep(2.5)
 
-            if is_inventory_full(not wc):
+            if is_inventory_full(not wc) and self.drop:
                 self.drop_items(inventory)
                 if wc:
                     pyautogui.write("s")
@@ -88,6 +94,7 @@ class GatheringBot:
             utilities.move_mouse(self.mouse, item_x + dictionary.bag_screen[0], item_y + dictionary.bag_screen[1])
             time.sleep(random.uniform(0.1, 0.2))
         pyautogui.keyUp("shift")
+        self.drop = False
 
     def roboflow_logic(self):
         predictions = model.predict(FILE_PATH + "\\bot_running.png", confidence=80, overlap=30).json()["predictions"]
@@ -131,6 +138,7 @@ class GatheringBot:
 
             if start_inv_size == inv_size - 1:
                 self.log_msg("Got +1 " + self.action)
+                self.tries_to_detect = 0
                 self.loot_count.set(self.loot_count.get() + 1)
                 start_inv_size = inv_size
 
@@ -140,6 +148,7 @@ class GatheringBot:
 
             if time.time() - time_to_check > 15:
                 self.log_msg("Didn't collect anything for a while..")
+                self.tries_to_detect += 1
                 return
 
 
